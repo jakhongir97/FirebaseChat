@@ -89,7 +89,7 @@ class PhoneNumberViewCotroller: UIViewController , UITextFieldDelegate {
         phoneNumberTextField.parentViewController = self
         setupView()
         phoneNumberValidation()
-        
+        self.hideKeyboardWhenTappedAround()
         
 
     }

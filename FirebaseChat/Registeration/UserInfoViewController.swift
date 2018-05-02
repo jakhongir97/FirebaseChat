@@ -101,6 +101,7 @@ class UserInfoViewController: UIViewController {
         
         setupView()
         enableNextButton()
+        self.hideKeyboardWhenTappedAround()
     }
     
     override func viewDidDisappear(_ animated: Bool) {

@@ -105,6 +105,7 @@ class VerificationViewController: UIViewController , UITextFieldDelegate {
         pinCodeTextField.delegate = self
         
         setupView()
+        
 
     }
     
@@ -198,6 +199,7 @@ class VerificationViewController: UIViewController , UITextFieldDelegate {
             if let error = error {
                 print(error)
                 self.errorLabel.isHidden = false
+                self.activityIndicator.stopAnimating()
                 return
             }
 
