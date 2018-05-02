@@ -54,6 +54,9 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - NVActivityIndicatorView (4.1.1):
+    - NVActivityIndicatorView/Presenter (= 4.1.1)
+  - NVActivityIndicatorView/Presenter (4.1.1)
   - PinCodeTextField (0.1.0)
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
@@ -69,6 +72,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - HGPlaceholders
   - Kingfisher
+  - NVActivityIndicatorView
   - PinCodeTextField
   - RxCocoa
   - RxSwift
@@ -92,6 +96,7 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   libPhoneNumber-iOS: e444379ac18bbfbdefad571da735b2cd7e096caa
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  NVActivityIndicatorView: 60109b9bf46efc2e71ab81453196ccdfdfeea870
   PinCodeTextField: a3c39be58bde3ed1d6888d0fb1d88b0a4a2277cc
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570
@@ -99,6 +104,6 @@ SPEC CHECKSUMS:
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   TextFieldEffects: 4ee41b5216e674d55fb6ac25107bf1af7629176f
 
-PODFILE CHECKSUM: 0721898a89dd03bdd0c370291eeffaf9e229b025
+PODFILE CHECKSUM: 18449cdd184fbbc32308b40f48405379fd08012d
 
 COCOAPODS: 1.4.0

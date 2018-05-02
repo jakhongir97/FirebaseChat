@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import SnapKit
 import CTKFlagPhoneNumber
+import NVActivityIndicatorView
 
 class PhoneNumberViewCotroller: UIViewController , UITextFieldDelegate {
     
@@ -22,6 +23,7 @@ class PhoneNumberViewCotroller: UIViewController , UITextFieldDelegate {
     var phoneNumber = Variable<String>("")
     
     let disposeBag = DisposeBag()
+    
     
     let headerLabel : UILabel = {
         var label = UILabel()
@@ -43,7 +45,6 @@ class PhoneNumberViewCotroller: UIViewController , UITextFieldDelegate {
     
     let phoneNumberTextField : CTKFlagPhoneNumberTextField = {
         var textfield = CTKFlagPhoneNumberTextField()
-        //textfield.becomeFirstResponder()
         textfield.setFlag(with: "UZ")
         textfield.borderStyle = .none
         textfield.flagSize = CGSize(width: 30, height: 30)
@@ -62,7 +63,8 @@ class PhoneNumberViewCotroller: UIViewController , UITextFieldDelegate {
     }()
     
     let nextButton : UIButton = {
-        var button = UIButton()
+        var button = UIButton(type: .system)
+        button.tintColor = .white
         button.setTitle("Next", for: .normal)
         button.backgroundColor = UIColor.amazingBrown
         button.layer.cornerRadius = 20
@@ -72,15 +74,30 @@ class PhoneNumberViewCotroller: UIViewController , UITextFieldDelegate {
         return button
     }()
     
+    let activityIndicator : NVActivityIndicatorView = {
+        let frameAI = CGRect(x: 0, y: 0, width: 50, height: 50)
+        var activity = NVActivityIndicatorView(frame: frameAI)
+        activity.type = .ballBeat
+        activity.color = UIColor.white
+        return activity
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         phoneNumberTextField.parentViewController = self
         setupView()
+        phoneNumberValidation()
         
         
 
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.activityIndicator.stopAnimating()
     }
     
     private func setupView(){
@@ -92,6 +109,7 @@ class PhoneNumberViewCotroller: UIViewController , UITextFieldDelegate {
         view.addSubview(phoneNumberTextField)
         view.addSubview(nextButton)
         view.addSubview(lineView)
+        view.addSubview(activityIndicator)
         
         phoneNumberTextField.snp.makeConstraints { (make) in
             make.center.equalTo(view)
@@ -123,6 +141,17 @@ class PhoneNumberViewCotroller: UIViewController , UITextFieldDelegate {
             make.bottom.equalTo(detailLabel.snp.top).offset(-50)
         }
         
+        activityIndicator.snp.makeConstraints { (make) in
+            make.centerX.equalTo(view)
+            make.bottom.equalTo(view).offset(-50)
+        }
+        
+        
+        
+    }
+    
+    private func phoneNumberValidation(){
+        
         _ = phoneNumberTextField.rx.text.map{$0 ?? "" }.bind(to: phoneNumber)
         
         phoneNumber.asObservable().subscribe(onNext: { [unowned self] number in
@@ -147,11 +176,11 @@ class PhoneNumberViewCotroller: UIViewController , UITextFieldDelegate {
             }
             
         }).disposed(by: disposeBag)
-        
-        
     }
     
     @objc func handleNextAction() {
+        
+        self.activityIndicator.startAnimating()
         
         guard let phoneNumber = phoneNumberTextField.getFormattedPhoneNumber() else {return}
         
@@ -175,6 +204,7 @@ class PhoneNumberViewCotroller: UIViewController , UITextFieldDelegate {
         }
     }
     
+
     
 
    

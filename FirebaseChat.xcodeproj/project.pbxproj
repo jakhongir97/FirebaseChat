@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4FCAB8E91EBC3F410410669F /* Pods_FirebaseChatTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C848F3DF3639496DA5407412 /* Pods_FirebaseChatTests.framework */; };
+		913CFA0F2099A67600C610C3 /* UpdateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913CFA0E2099A67600C610C3 /* UpdateUser.swift */; };
 		91A3ACB42096E3DD00F18A22 /* PhoneNumberViewCotroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A3ACB32096E3DD00F18A22 /* PhoneNumberViewCotroller.swift */; };
 		91A3ACB62096F84D00F18A22 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A3ACB52096F84D00F18A22 /* VerificationViewController.swift */; };
 		91A3ACB82097207B00F18A22 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A3ACB72097207B00F18A22 /* UserInfoViewController.swift */; };
@@ -53,6 +54,7 @@
 		4BD3E06AB3F970DBB60AA409 /* Pods-FirebaseChatUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseChatUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FirebaseChatUITests/Pods-FirebaseChatUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7130167A09BA5C669AF5B4DD /* Pods-FirebaseChatUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseChatUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FirebaseChatUITests/Pods-FirebaseChatUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7B8952E5B937C9A05CD7C02A /* Pods-FirebaseChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-FirebaseChat/Pods-FirebaseChat.release.xcconfig"; sourceTree = "<group>"; };
+		913CFA0E2099A67600C610C3 /* UpdateUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUser.swift; sourceTree = "<group>"; };
 		91A3ACB32096E3DD00F18A22 /* PhoneNumberViewCotroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberViewCotroller.swift; sourceTree = "<group>"; };
 		91A3ACB52096F84D00F18A22 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		91A3ACB72097207B00F18A22 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				91FD306A207E312500D12482 /* User.swift */,
 				91B8E70C2080792400468A08 /* Message.swift */,
+				913CFA0E2099A67600C610C3 /* UpdateUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/HGPlaceholders/HGPlaceholders.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/PinCodeTextField/PinCodeTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
@@ -452,6 +456,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HGPlaceholders.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinCodeTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
@@ -577,6 +582,7 @@
 				91A3ACB42096E3DD00F18A22 /* PhoneNumberViewCotroller.swift in Sources */,
 				91B8E70D2080792400468A08 /* Message.swift in Sources */,
 				91A3ACB82097207B00F18A22 /* UserInfoViewController.swift in Sources */,
+				913CFA0F2099A67600C610C3 /* UpdateUser.swift in Sources */,
 				91A3ACB62096F84D00F18A22 /* VerificationViewController.swift in Sources */,
 				91E6D744207F71AC004C3E97 /* ChatController.swift in Sources */,
 				91FD306D207E37AD00D12482 /* UserCell.swift in Sources */,

@@ -13,6 +13,7 @@ class UserCell: UITableViewCell {
 
     let topLabel : UILabel = {
         var label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 19, weight: .bold)
         label.textColor = .amazingBrown
         return label
     }()

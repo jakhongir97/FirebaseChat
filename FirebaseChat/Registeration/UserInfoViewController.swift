@@ -11,13 +11,15 @@ import TextFieldEffects
 import Firebase
 import RxSwift
 import RxCocoa
-
+import NVActivityIndicatorView
 
 class UserInfoViewController: UIViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
+    
     
     var usernameText = Variable<String>("")
     
@@ -72,7 +74,8 @@ class UserInfoViewController: UIViewController {
     }()
     
     let nextButton : UIButton = {
-        var button = UIButton()
+        var button = UIButton(type: .system)
+        button.tintColor = .white
         button.setTitle("Next", for: .normal)
         button.backgroundColor = UIColor.amazingBrown
         button.layer.cornerRadius = 20
@@ -80,6 +83,14 @@ class UserInfoViewController: UIViewController {
         button.alpha = 0.6
         button.addTarget(self, action: #selector(handleNextAction), for: .touchUpInside)
         return button
+    }()
+    
+    let activityIndicator : NVActivityIndicatorView = {
+        let frameAI = CGRect(x: 0, y: 0, width: 50, height: 50)
+        var activity = NVActivityIndicatorView(frame: frameAI)
+        activity.type = .ballBeat
+        activity.color = UIColor.white
+        return activity
     }()
     
 
@@ -92,6 +103,12 @@ class UserInfoViewController: UIViewController {
         enableNextButton()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.activityIndicator.stopAnimating()
+    }
+    
     private func setupView(){
         view.backgroundColor = UIColor.amazingBlue
         
@@ -100,6 +117,7 @@ class UserInfoViewController: UIViewController {
         view.addSubview(usernameTextField)
         view.addSubview(nextButton)
         profileImageView.addSubview(editLabel)
+        view.addSubview(activityIndicator)
         
         
         usernameTextField.snp.makeConstraints { (make) in
@@ -131,6 +149,11 @@ class UserInfoViewController: UIViewController {
             make.top.equalTo(usernameTextField.snp.bottom).offset(50)
         }
         
+        activityIndicator.snp.makeConstraints { (make) in
+            make.centerX.equalTo(view)
+            make.bottom.equalTo(view).offset(-50)
+        }
+        
         
         
     }
@@ -155,6 +178,8 @@ class UserInfoViewController: UIViewController {
     }
     
     @objc func handleNextAction() {
+        
+        self.activityIndicator.startAnimating()
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
         guard let username = usernameTextField.text , let phone = UserDefaults.standard.string(forKey: "phoneNumber") else { return }
@@ -191,6 +216,8 @@ class UserInfoViewController: UIViewController {
                 return
             }
             
+            
+            UpdateUser.shared.shouldBeReloaded.value = true
             self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
             
             

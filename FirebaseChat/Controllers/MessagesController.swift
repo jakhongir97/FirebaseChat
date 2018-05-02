@@ -58,11 +58,17 @@ class MessagesController: UIViewController {
         setupCellConfiguration()
         setupCellTapHandling()
         setupDeleteWithSwipe()
+        shouldBeReloaded()
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        //fetchUserAndSetupNavBarTitle()
+    private func shouldBeReloaded () {
+        UpdateUser.shared.shouldBeReloaded.asObservable().subscribe(onNext: { [weak self] bool in
+            if bool {
+                self?.fetchUserAndSetupNavBarTitle()
+            }
+            
+        }).disposed(by: disposeBag)
     }
     
     private func setupNavbar(){
@@ -92,8 +98,6 @@ class MessagesController: UIViewController {
         }
         tableView.register(UserCell.self, forCellReuseIdentifier: cellIdentifier)
         
-//        tableView.separatorInset = UIEdgeInsetsMake(0, 110, 0, 20)
-//        tableView.separatorColor = .gray
         tableView.separatorStyle = .none
     }
     
@@ -115,7 +119,7 @@ class MessagesController: UIViewController {
                                     let url = URL(string: urlString)
                                     cell.profileImageView.kf.indicatorType = .activity
                                     cell.profileImageView.kf.setImage(with: url)
-                                }
+                                } 
                                 
                             }
                             

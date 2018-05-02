@@ -54,8 +54,6 @@ class NewMessagesController: UIViewController {
             make.edges.equalTo(self.view)
         }
         
-//        tableView.separatorInset = UIEdgeInsetsMake(0, 110, 0, 20)
-//        tableView.separatorColor = .gray
         tableView.separatorStyle = .none
         tableView.register(UserCell.self, forCellReuseIdentifier: cellIdentifier)
     }

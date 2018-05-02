@@ -18,6 +18,8 @@ target 'FirebaseChat' do
     pod "CTKFlagPhoneNumber"
     pod 'PinCodeTextField'
     pod 'TextFieldEffects'
+    pod 'NVActivityIndicatorView'
+
 
   target 'FirebaseChatTests' do
     inherit! :search_paths

@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import SnapKit
 import PinCodeTextField
+import NVActivityIndicatorView
 
 class VerificationViewController: UIViewController , UITextFieldDelegate {
     
@@ -77,7 +78,8 @@ class VerificationViewController: UIViewController , UITextFieldDelegate {
     }()
     
     let nextButton : UIButton = {
-        var button = UIButton()
+        var button = UIButton(type: .system)
+        button.tintColor = .white
         button.setTitle("Next", for: .normal)
         button.backgroundColor = UIColor.amazingBrown
         button.layer.cornerRadius = 20
@@ -85,6 +87,14 @@ class VerificationViewController: UIViewController , UITextFieldDelegate {
         button.alpha = 0.6
         button.addTarget(self, action: #selector(handleNextAction), for: .touchUpInside)
         return button
+    }()
+    
+    let activityIndicator : NVActivityIndicatorView = {
+        let frameAI = CGRect(x: 0, y: 0, width: 50, height: 50)
+        var activity = NVActivityIndicatorView(frame: frameAI)
+        activity.type = .ballBeat
+        activity.color = UIColor.white
+        return activity
     }()
    
         
@@ -96,6 +106,12 @@ class VerificationViewController: UIViewController , UITextFieldDelegate {
         
         setupView()
 
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.activityIndicator.stopAnimating()
     }
     
     
@@ -114,6 +130,7 @@ class VerificationViewController: UIViewController , UITextFieldDelegate {
         view.addSubview(errorLabel)
         view.addSubview(headerLabel)
         view.addSubview(nextButton)
+        view.addSubview(activityIndicator)
         
         pinCodeTextField.snp.makeConstraints { (make) in
             make.center.equalTo(view)
@@ -154,12 +171,19 @@ class VerificationViewController: UIViewController , UITextFieldDelegate {
             make.bottom.equalTo(detailLabel.snp.top).offset(-20)
         }
         
+        activityIndicator.snp.makeConstraints { (make) in
+            make.centerX.equalTo(view)
+            make.bottom.equalTo(view).offset(-50)
+        }
+        
         
     }
     
     
     
     @objc func handleNextAction() {
+        
+        self.activityIndicator.startAnimating()
         
         guard let verificationCode = pinCodeTextField.text else { return }
         guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else {return}
